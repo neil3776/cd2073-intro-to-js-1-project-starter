@@ -8,7 +8,7 @@
    - productId: unique id for the product (number)
    - image: picture of product (url string)
 */
-var products =[
+let products =[
   {
     name:"Carton of Cherries",
     price:4,
@@ -39,7 +39,7 @@ var products =[
 */
 
 /* Declare an empty array named cart to hold the items in the cart */
-var cart = [];
+let cart = [];
 
 /* Create a function named addProductToCart that takes in the product productId as an argument
   - addProductToCart should get the correct product based on the productId
@@ -53,7 +53,7 @@ function addProductToCart(productId) {
       product.quantity += 1;
 
       // update cart
-      let numItems = cart.length;
+      const numItems = cart.length;
       if (numItems == 0) { // the cart is empty
         cart.push(product);
       } else {
@@ -110,7 +110,6 @@ function decreaseQuantity(productId) {
   })
 
   // decrease the cart quantity for the product and remove if necessary
-  let removeIdx; 
   cart.forEach(function(item,idx) {
     if (item.productId == productId) {
       if (itemNum > 0) {
@@ -129,7 +128,6 @@ function decreaseQuantity(productId) {
 */
 function removeProductFromCart(productId) {
   // set the quantity to zero for this product
-  let numItem = 0; 
   products.forEach(function(product) {
     if (product.productId == productId) {
       product.quantity = 0;
@@ -159,8 +157,7 @@ function cartTotal() {
 
 /* Create a function called emptyCart that empties the products from the cart */
 function emptyCart() {
-  let num = cart.length;
-  cart.splice(0,num);
+  cart = [];
 }
 
 /* Create a function named pay that takes in an amount as an argument
@@ -169,7 +166,6 @@ function emptyCart() {
 */
 function pay(amount) {
   let balance = amount - cartTotal();
-  emptyCart(); 
   return balance; 
 }
 
