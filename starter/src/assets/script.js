@@ -51,13 +51,27 @@ function addProductToCart(productId) {
   products.forEach(function(product) {
     if (product.productId == productId) {
       product.quantity += 1;
+
+      // update cart
+      let numItems = cart.length;
+      if (numItems == 0) { // the cart is empty
+        cart.push(product);
+      } else {
+        let inCart = false; 
+        for (let x=0; x<numItems; x++) {
+          if (cart[x].productId == productId) {
+            cart[x].quantity = product.quantity;
+            inCart = true; 
+          }           
+        }
+        if (!inCart) {
+          cart.push(product);
+        }
+      }
     }
-    // add this product to the cart if necessary
-    if (!cart.find(product.productId)) {
-      cart.push(product.productId);
-    }
-  })
+  })  
 }
+
   
 /* Create a function named increaseQuantity that takes in the productId as an argument
   - increaseQuantity should get the correct product based on the productId
@@ -65,9 +79,17 @@ function addProductToCart(productId) {
 */
 function increaseQuantity(productId) {
   // increment the quantity for this product
+  let itemNum = 0; 
   products.forEach(function(product) {
     if (product.productId == productId) {
       product.quantity += 1;
+      itemNum = product.quantity; 
+    }
+  })
+
+  cart.forEach(function(item) {
+    if (item.productId == productId) {
+      item.quantity = itemNum;
     }
   })
 }
@@ -79,9 +101,23 @@ function increaseQuantity(productId) {
 */
 function decreaseQuantity(productId) {
   // decrease the quantity for this product
+  let itemNum = 0; 
   products.forEach(function(product) {
     if (product.productId == productId) {
       product.quantity -= 1;
+      itemNum = product.quantity; 
+    }
+  })
+
+  // decrease the cart quantity for the product and remove if necessary
+  let removeIdx; 
+  cart.forEach(function(item,idx) {
+    if (item.productId == productId) {
+      if (itemNum > 0) {
+        item.quantity = itemNum;
+      } else {
+        cart.splice(idx,1);    
+      }
     }
   })
 }
@@ -92,17 +128,20 @@ function decreaseQuantity(productId) {
   - removeProductFromCart should remove the product from the cart
 */
 function removeProductFromCart(productId) {
-  // decrease the quantity for this product
+  // set the quantity to zero for this product
+  let numItem = 0; 
   products.forEach(function(product) {
     if (product.productId == productId) {
-      product.quantity -= 1;
-    }
-    // remove product from the cart if necessary
-    if (product.quantity == 0) {
-      let idx = cart.find(product.productId);
-      cart.splice(idx,1);
+      product.quantity = 0;
     }
   })  
+
+  // remove from the cart
+  cart.forEach(function(item,idx) {
+    if (item.productId == productId) {
+      cart.splice(idx,1); 
+    }
+  })
 }
   
 
@@ -120,14 +159,8 @@ function cartTotal() {
 
 /* Create a function called emptyCart that empties the products from the cart */
 function emptyCart() {
-  // set quantity to zero for each product 
-  products.forEach(function(product) {
-    if (product.quantity > 0) {
-      product.quantity = 0;
-      let idx = cart.find(product.productId);
-      cart.splice(idx,1);
-    }
-  })  
+  let num = cart.length;
+  cart.splice(0,num);
 }
 
 /* Create a function named pay that takes in an amount as an argument
@@ -136,6 +169,7 @@ function emptyCart() {
 */
 function pay(amount) {
   let balance = amount - cartTotal();
+  emptyCart(); 
   return balance; 
 }
 
