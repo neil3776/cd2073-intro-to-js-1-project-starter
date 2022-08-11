@@ -54,24 +54,23 @@ function addProductToCart(productId) {
 
       // update cart
       const numItems = cart.length;
-      if (numItems == 0) { // the cart is empty
+      if (numItems == 0) { // the cart was empty
         cart.push(product);
       } else {
-        let inCart = false; 
+        let inCart = false; // assume the product is not in the cart
         for (let x=0; x<numItems; x++) {
           if (cart[x].productId == productId) {
             cart[x].quantity = product.quantity;
             inCart = true; 
           }           
         }
-        if (!inCart) {
+        if (!inCart) { // it wasn't found so add it
           cart.push(product);
         }
       }
     }
   })  
 }
-
   
 /* Create a function named increaseQuantity that takes in the productId as an argument
   - increaseQuantity should get the correct product based on the productId
@@ -86,7 +85,8 @@ function increaseQuantity(productId) {
       itemNum = product.quantity; 
     }
   })
-
+  
+  // increase the quantity for this cart item
   cart.forEach(function(item) {
     if (item.productId == productId) {
       item.quantity = itemNum;
@@ -134,7 +134,7 @@ function removeProductFromCart(productId) {
     }
   })  
 
-  // remove from the cart
+  // remove this product from the cart
   cart.forEach(function(item,idx) {
     if (item.productId == productId) {
       cart.splice(idx,1); 
@@ -142,7 +142,6 @@ function removeProductFromCart(productId) {
   })
 }
   
-
 /* Create a function named cartTotal that has no parameters
   - cartTotal should iterate through the cart to get the total of all products
   - cartTotal should return the sum of the products in the cart
