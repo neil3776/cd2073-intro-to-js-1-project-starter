@@ -163,7 +163,7 @@ function emptyCart() {
   - pay will return a negative number if there is a remaining balance
   - pay will return a positive number if money should be returned to customer
 */
-let totalPaid = 0; 
+var totalPaid = 0; 
 function pay(amount) {
   totalPaid = totalPaid + amount; 
   let balance = totalPaid - cartTotal();
