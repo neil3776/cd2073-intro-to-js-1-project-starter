@@ -113,7 +113,7 @@ function removeProductFromCart(productId) {
 function cartTotal() {
   let total = 0;
   products.forEach(function(product) {
-    total += product.quantity;
+    total += product.quantity * product.price;
   })
   return total; 
 }
@@ -134,6 +134,10 @@ function emptyCart() {
   - pay will return a negative number if there is a remaining balance
   - pay will return a positive number if money should be returned to customer
 */
+function pay(amount) {
+  let balance = amount - cartTotal();
+  return balance; 
+}
 
 /* Place stand out suggestions here (stand out suggestions can be found at the bottom of the project rubric.)*/
 
