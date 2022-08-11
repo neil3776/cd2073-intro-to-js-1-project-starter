@@ -12,21 +12,21 @@ let products =[
   {
     name:"Carton of Cherries",
     price:4,
-    quantity:44,
+    quantity:0,
     productId:101,
     image:"images/cherry.jpg"
   },
   {
     name:"Carton of Strawberries",
     price:5,
-    quantity:23,
+    quantity:0,
     productId:102,
     image:"images/strawberry.jpg"
   },
   {
     name:"Bag of Oranges",
     price:10,
-    quantity:20,
+    quantity:0,
     productId:103,
     image:"images/orange.jpg"
   }
@@ -39,12 +39,29 @@ let products =[
 */
 
 /* Declare an empty array named cart to hold the items in the cart */
+let cart = [];
 
 /* Create a function named addProductToCart that takes in the product productId as an argument
   - addProductToCart should get the correct product based on the productId
   - addProductToCart should then increase the product's quantity
   - if the product is not already in the cart, add it to the cart
 */
+function addProductToCart(productId) {
+  // increment the quantity for this product
+  products.forEach(function(product) {
+    if (product.productId == productId) {
+      product.quantity += 1;
+    }
+  })
+  // add this product to the cart if necessary
+  if (!cart.find(productId)) {
+    cart.push(productId);
+  }
+
+  }
+  
+
+
 
 /* Create a function named increaseQuantity that takes in the productId as an argument
   - increaseQuantity should get the correct product based on the productId
