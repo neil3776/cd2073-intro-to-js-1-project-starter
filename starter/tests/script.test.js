@@ -73,6 +73,6 @@ describe('Checkout Functionality Tests', () => {
     test('pay less than the total works', () => {
         cart.addProductToCart(product1.productId);
         cart.addProductToCart(product2.productId);
-        expect(cart.pay(1)).toBeLessThan(grandTotal());
+        expect(cart.pay(1)).toBeGreaterThan(grandTotal());
     });
 });

@@ -156,6 +156,11 @@ function cartTotal() {
 
 /* Create a function called emptyCart that empties the products from the cart */
 function emptyCart() {
+  // set the quantity to zero for this product
+  products.forEach(function(product) {
+    product.quantity = 0;
+  })  
+  // empty the cart
   cart = [];
 }
 
