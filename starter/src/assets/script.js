@@ -39,7 +39,7 @@ var products =[
 */
 
 /* Declare an empty array named cart to hold the items in the cart */
-let cart = [];
+var cart = [];
 
 /* Create a function named addProductToCart that takes in the product productId as an argument
   - addProductToCart should get the correct product based on the productId
@@ -57,19 +57,34 @@ function addProductToCart(productId) {
       cart.push(product.productId);
     }
   })
-};
+}
   
 /* Create a function named increaseQuantity that takes in the productId as an argument
   - increaseQuantity should get the correct product based on the productId
   - increaseQuantity should then increase the product's quantity
 */
-
+function increaseQuantity(productId) {
+  // increment the quantity for this product
+  products.forEach(function(product) {
+    if (product.productId == productId) {
+      product.quantity += 1;
+    }
+  })
+}
 
 /* Create a function named decreaseQuantity that takes in the productId as an argument
   - decreaseQuantity should get the correct product based on the productId
   - decreaseQuantity should decrease the quantity of the product
   - if the function decreases the quantity to 0, the product is removed from the cart
 */
+function decreaseQuantity(productId) {
+  // decrease the quantity for this product
+  products.forEach(function(product) {
+    if (product.productId == productId) {
+      product.quantity -= 1;
+    }
+  })
+}
 
 /* Create a function named removeProductFromCart that takes in the productId as an argument
   - removeProductFromCart should get the correct product based on the productId
@@ -77,7 +92,7 @@ function addProductToCart(productId) {
   - removeProductFromCart should remove the product from the cart
 */
 function removeProductFromCart(productId) {
-  // increment the quantity for this product
+  // decrease the quantity for this product
   products.forEach(function(product) {
     if (product.productId == productId) {
       product.quantity -= 1;
@@ -88,7 +103,7 @@ function removeProductFromCart(productId) {
       cart.splice(idx,1);
     }
   })  
-  };
+}
   
 
 /* Create a function named cartTotal that has no parameters
@@ -104,6 +119,16 @@ function cartTotal() {
 }
 
 /* Create a function called emptyCart that empties the products from the cart */
+function emptyCart() {
+  // set quantity to zero for each product 
+  products.forEach(function(product) {
+    if (product.quantity > 0) {
+      product.quantity = 0;
+      let idx = cart.find(product.productId);
+      cart.splice(idx,1);
+    }
+  })  
+}
 
 /* Create a function named pay that takes in an amount as an argument
   - pay will return a negative number if there is a remaining balance
