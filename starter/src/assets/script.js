@@ -8,6 +8,29 @@
    - productId: unique id for the product (number)
    - image: picture of product (url string)
 */
+let products =[
+  {
+    name:"Carton of Cherries",
+    price:4,
+    quantity:44,
+    productId:101,
+    image:"src/images/cherry.jpg"
+  },
+  {
+    name:"Carton of Strawberries",
+    price:5,
+    quantity:23,
+    productId:102,
+    image:"src/images/strawberry.jpg"
+  },
+  {
+    name:"Bag of Oranges",
+    price:10,
+    quantity:20,
+    productId:103,
+    image:"src/images/orange.jpg"
+  }
+];
 
 /* Images provided in /images folder. All images from Unsplash.com
    - cherry.jpg by Mae Mu
