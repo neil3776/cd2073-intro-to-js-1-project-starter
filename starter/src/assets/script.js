@@ -14,21 +14,21 @@ let products =[
     price:4,
     quantity:44,
     productId:101,
-    image:"src/images/cherry.jpg"
+    image:"images/cherry.jpg"
   },
   {
     name:"Carton of Strawberries",
     price:5,
     quantity:23,
     productId:102,
-    image:"src/images/strawberry.jpg"
+    image:"images/strawberry.jpg"
   },
   {
     name:"Bag of Oranges",
     price:10,
     quantity:20,
     productId:103,
-    image:"src/images/orange.jpg"
+    image:"images/orange.jpg"
   }
 ];
 
