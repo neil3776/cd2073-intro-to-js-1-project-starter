@@ -8,7 +8,7 @@
    - productId: unique id for the product (number)
    - image: picture of product (url string)
 */
-let products =[
+var products =[
   {
     name:"Carton of Cherries",
     price:4,
@@ -52,21 +52,18 @@ function addProductToCart(productId) {
     if (product.productId == productId) {
       product.quantity += 1;
     }
+    // add this product to the cart if necessary
+    if (!cart.find(product.productId)) {
+      cart.push(product.productId);
+    }
   })
-  // add this product to the cart if necessary
-  if (!cart.find(productId)) {
-    cart.push(productId);
-  }
-
-  }
+};
   
-
-
-
 /* Create a function named increaseQuantity that takes in the productId as an argument
   - increaseQuantity should get the correct product based on the productId
   - increaseQuantity should then increase the product's quantity
 */
+
 
 /* Create a function named decreaseQuantity that takes in the productId as an argument
   - decreaseQuantity should get the correct product based on the productId
@@ -79,6 +76,20 @@ function addProductToCart(productId) {
   - removeProductFromCart should update the product quantity to 0
   - removeProductFromCart should remove the product from the cart
 */
+function removeProductFromCart(productId) {
+  // increment the quantity for this product
+  products.forEach(function(product) {
+    if (product.productId == productId) {
+      product.quantity -= 1;
+    }
+    // remove product from the cart if necessary
+    if (product.quantity == 0) {
+      let idx = cart.find(product.productId);
+      cart.splice(idx,1);
+    }
+  })  
+  };
+  
 
 /* Create a function named cartTotal that has no parameters
   - cartTotal should iterate through the cart to get the total of all products
